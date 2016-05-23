@@ -38,4 +38,11 @@ class CalculatorSpec < MiniTest::Test
     assert_instance_of(Float, my_calculator.divide(7))
   end
 
+  def test_divide_by_zero
+    my_calculator = Calculator.new
+    my_calculator.accumulator = 5
+    assert_nil(Float, my_calculator.divide(0))
+
+  end
+
 end

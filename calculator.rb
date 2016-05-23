@@ -1,6 +1,10 @@
 class Calculator
   attr_accessor :accumulator
 
+  def self.accumulator=(val)
+    self.accumulator = val.to_f
+  end
+
   def add(number)
     self.accumulator += number
   end
