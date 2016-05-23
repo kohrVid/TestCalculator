@@ -42,6 +42,7 @@ class CalculatorSpec < MiniTest::Test
     my_calculator = Calculator.new
     my_calculator.accumulator = 5
     assert_nil(my_calculator.divide(0))
+    assert_nil(my_calculator.accumulator)
   end
 
 end

@@ -19,7 +19,7 @@ class Calculator
 
   def divide(number)
     if number == 0
-      nil
+      self.accumulator = nil
     else
       self.accumulator /= number.to_f
     end
