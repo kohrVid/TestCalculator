@@ -18,6 +18,10 @@ class Calculator
   end
 
   def divide(number)
-    self.accumulator /= number.to_f
+    if number == 0
+      self.accumulator = nil
+    else
+      self.accumulator /= number.to_f
+    end
   end
 end
