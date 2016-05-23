@@ -31,4 +31,11 @@ class CalculatorSpec < MiniTest::Test
     my_calculator.accumulator = 5
     assert_equal(0.7142857142857143, my_calculator.divide(7))
   end
+  
+  def test_accumulator_is_a_floating_point
+    my_calculator = Calculator.new
+    my_calculator.accumulator = 5
+    assert_instance_of(Float, my_calculator.divide(7))
+  end
+
 end
