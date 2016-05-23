@@ -1,48 +1,42 @@
 require "minitest/autorun"
 require "./calculator"
 
-class CalculatorSpec < MiniTest::Test
-  def test_accumulator
-    my_calculator = Calculator.new()
-    my_calculator.accumulator = 5
-    assert_equal(5, my_calculator.accumulator)
+class CalculatorSpec < MiniTest::Spec
+  before do
+    @calculator = Calculator.new
+    @calculator.accumulator = 5
   end
 
-  def test_add
-    my_calculator = Calculator.new
-    my_calculator.accumulator = 5
-    assert_equal(12, my_calculator.add(7))
-  end
-  
-  def test_minus
-    my_calculator = Calculator.new
-    my_calculator.accumulator = 5
-    assert_equal(-2, my_calculator.minus(7))
+  describe "Addition" do
+    it "should add numbers to the accumulator" do
+      @calculator.add(10).must_equal 15
+    end 
   end
 
-  def test_multiply
-    my_calculator = Calculator.new
-    my_calculator.accumulator = 5
-    assert_equal(35, my_calculator.multiply(7))
-  end
-  
-  def test_division
-    my_calculator = Calculator.new
-    my_calculator.accumulator = 5
-    assert_equal(0.7142857142857143, my_calculator.divide(7))
-  end
-  
-  def test_accumulator_is_a_floating_point
-    my_calculator = Calculator.new
-    my_calculator.accumulator = 5
-    assert_instance_of(Float, my_calculator.divide(7))
+  describe "Minus" do
+    it "should subtract numbers from the accumulator" do
+      @calculator.minus(7).must_equal -2
+    end
   end
 
-  def test_divide_by_zero
-    my_calculator = Calculator.new
-    my_calculator.accumulator = 5
-    assert_nil(my_calculator.divide(0))
-    assert_nil(my_calculator.accumulator)
+  describe "Multiply" do
+    it "should multiply the accumulator by a number" do
+      @calculator.multiply(7).must_equal(35)
+    end
   end
 
+  describe "Division" do
+    it "should divide the accumulator by a number" do
+      @calculator.divide(7).must_equal(0.7142857142857143)
+    end
+
+    it "should return a float when dividing the accumulator by larger numbers" do
+      @calculator.divide(7).must_be_instance_of(Float)
+    end
+
+    it "should return nil when dividing by zero" do
+      @calculator.divide(0).must_be_nil
+      @calculator.accumulator.must_be_nil
+    end
+  end
 end
